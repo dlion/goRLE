@@ -3,13 +3,14 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"strconv"
 )
 
 func main() {
-	stringa := "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW"
+	stringa := "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWWWBBBBBBBBBWWW"
 	enc := encode(stringa)
 	dec := decode(enc)
-	fmt.Printf("ENC: %s\nDEC: %s\n", enc, dec)
+	fmt.Printf("STR: %s\nENC: %s\nDEC: %s\n", stringa, enc, dec)
 }
 
 func encode(s string) string {
@@ -30,11 +31,21 @@ func encode(s string) string {
 
 func decode(s string) string {
 	var o bytes.Buffer
-	i := 0
-	for i < len(s)-1 {
-		if int(s[i]) >= 0 
-		for j := 0; j < int(s[i]); j++ {
-			o.WriteString(fmt.Sprintf("%c", s[i+1]))
+	var count string
+	for i := 0; i < len(s); i++ {
+		val, _ := strconv.Atoi(string(s[i]))
+		if val > 0 && val <= 9 {
+			if countN, err := strconv.Atoi(count); err == nil {
+				count = fmt.Sprintf("%d%d", countN, val)
+			} else {
+				count = fmt.Sprintf("%d", val)
+			}
+		} else {
+			count2, _ := strconv.Atoi(count)
+			for j := 0; j < count2; j++ {
+				o.WriteString(fmt.Sprintf("%c", s[i]))
+			}
+			count = ""
 		}
 	}
 	return o.String()
