@@ -1,5 +1,5 @@
 # goRLE
-Didactics version of Run-Length Encoding on strings in Golang
+Didactics version of [Run-Length Encoding](https://en.wikipedia.org/wiki/Run-length_encoding) on strings in Golang
 
 ##Install
 
