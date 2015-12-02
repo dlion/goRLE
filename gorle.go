@@ -1,17 +1,10 @@
-package main
+package gorle
 
 import (
 	"bytes"
 	"fmt"
 	"strconv"
 )
-
-func main() {
-	stringa := "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWWWBBBBBBBBBWWW"
-	enc := encode(stringa)
-	dec := decode(enc)
-	fmt.Printf("STR: %s\nENC: %s\nDEC: %s\n", stringa, enc, dec)
-}
 
 func encode(s string) string {
 	count := 1
@@ -33,12 +26,11 @@ func decode(s string) string {
 	var o bytes.Buffer
 	var count string
 	for i := 0; i < len(s); i++ {
-		val, _ := strconv.Atoi(string(s[i]))
-		if val > 0 && val <= 9 {
+		if val, _ := strconv.Atoi(string(s[i])); val > 0 && val <= 9 {
 			if countN, err := strconv.Atoi(count); err == nil {
 				count = fmt.Sprintf("%d%d", countN, val)
 			} else {
-				count = fmt.Sprintf("%d", val)
+				count = string(s[i])
 			}
 		} else {
 			count2, _ := strconv.Atoi(count)
