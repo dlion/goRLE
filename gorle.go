@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func encode(s string) string {
+func Encode(s string) string {
 	count := 1
 	var o bytes.Buffer
 	var i int
@@ -22,7 +22,7 @@ func encode(s string) string {
 	return o.String()
 }
 
-func decode(s string) string {
+func Decode(s string) string {
 	var o bytes.Buffer
 	var count string
 	for i := 0; i < len(s); i++ {
